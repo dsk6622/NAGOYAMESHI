@@ -26,3 +26,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::post('logout', [Dashboard\Auth\LoginController::class, 'logout'])->name('logout');
     Route::get('/', [Dashboard\HomeController::class, 'index'])->name('home');
 });
+
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => 'admin.auth'], function () {
+    Route::get('users', [Dashboard\UserController::class, 'index'])->name('users.index');
+});

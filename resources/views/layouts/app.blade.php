@@ -38,7 +38,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guard('admin')->check())
                             <li class="nav-item"><a href="#" class="nav-link">店舗一覧</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">会員一覧</a></li>
+                            <li class="nav-item"><a href="{{ route('dashboard.users.index') }}" class="nav-link">会員一覧</a></li>
                             <li class="nav-item"><a href="#" class="nav-link">カテゴリ一覧</a></li>
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('dashboard.logout') }}"
