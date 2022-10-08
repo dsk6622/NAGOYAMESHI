@@ -13,6 +13,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <link href="{{ asset('/css/nagoyameshi.css') }}" rel="stylesheet">
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -37,7 +39,7 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @if (Auth::guard('admin')->check())
-                            <li class="nav-item"><a href="#" class="nav-link">店舗一覧</a></li>
+                            <li class="nav-item"><a href="{{ route('dashboard.restaurants.index') }}" class="nav-link">店舗一覧</a></li>
                             <li class="nav-item"><a href="{{ route('dashboard.users.index') }}" class="nav-link">会員一覧</a></li>
                             <li class="nav-item"><a href="#" class="nav-link">カテゴリ一覧</a></li>
                             <li class="nav-item">
