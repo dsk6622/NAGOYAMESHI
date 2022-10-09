@@ -1,3 +1,11 @@
 .display-none {
   display: none;
 }
+
+.search-box {
+  max-width: 240px;
+}
+
+footer > div {
+  height: 60px;
+}

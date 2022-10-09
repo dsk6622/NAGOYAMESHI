@@ -93,9 +93,15 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
+
+        <footer>
+            <div class="d-flex justify-content-center align-items-center bg-dark">
+                <p class="text-white small mb-0">&copy; {{ config('app.name', 'Laravel') }} All rights reserved.</span>
+            </div> 
+        </footer>        
     </div>
 
     @stack('scripts')

@@ -20,6 +20,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::resource('restaurants', RestaurantController::class)->only(['index', 'show']);
+
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('login', [Dashboard\Auth\LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [Dashboard\Auth\LoginController::class, 'login'])->name('login');

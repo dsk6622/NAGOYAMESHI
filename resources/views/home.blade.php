@@ -12,13 +12,69 @@
 @endpush
 
 @section('content')
-<div class="container">
-    <div>
-        <ul class="slider">
-          <li><img src="{{ asset('') }}" alt="CanonのCamera" class="mainpic"></li>
-          <li><img src="image/main2.png" alt="機材一式" class="mainpic"></li>
-          <li><img src="image/main3.png" alt="海の撮影" class="mainpic"></li>
+<div class="container pb-4">
+    <div class="mb-5">
+        <ul class="slider ps-0">
+          <li><img src="{{ asset('/images/top1.jpg') }}" alt="海辺のレストラン" class="w-100"></li>
+          <li><img src="{{ asset('/images/top2.jpg') }}" alt="料理" class="w-100"></li>
+          <li><img src="{{ asset('/images/top3.jpg') }}" alt="レストランの看板" class="w-100"></li>
         </ul>
     </div>
+
+    <h2 class="text-center">新着</h2>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 col-md-8">
+            @foreach ($restaurants as $restaurant)
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <img src="{{ asset('storage/restaurants/' . $restaurant->image) }}" class="w-100">
+                    </div>
+
+                    <div class="col">
+                        <table class="table table-striped">                                             
+                            <tr>
+                                <th scope="col">店舗名</th>                             
+                                <td>{{ $restaurant->name }}</td>                                                            
+                            </tr>  
+                            <tr>
+                                <th scope="col">説明</th>                             
+                                <td>{{ $restaurant->description }}</td>                                                            
+                            </tr>    
+                            <tr>
+                                <th scope="col">営業時間</th>                             
+                                <td>{{ date('H時i分', strtotime($restaurant->opening_time)) }}～{{ date('H時i分', strtotime($restaurant->closing_time)) }}</td>                                                            
+                            </tr>     
+                            <tr>
+                                <th scope="col">価格</th>                             
+                                <td>{{ $restaurant->lowest_price }}円～{{ $restaurant->highest_price }}円</td>                                                            
+                            </tr>                                          
+                            <tr>
+                                <th scope="col">カテゴリ</th>
+                                <td>{{ $restaurant->category->name }}</td>
+                            </tr>            
+                        </table>    
+                    </div>               
+                </div>
+            @endforeach 
+        </div>
+    </div> 
+
+    <h2 class="text-center">店舗検索</h2>
+
+    <div class="d-flex justify-content-center mb-4">
+        <form method="GET" action="{{ route('restaurants.index') }}" class="search-box">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="店舗名で検索" name="keyword">
+                <button type="submit" class="btn btn-primary shadow-sm">検索</button> 
+            </div>               
+        </form>   
+    </div>
+
+    <h2 class="text-center">カテゴリ検索</h2>
+
+    @foreach ($categories as $category)
+        <a class="btn btn-secondary mb-2" href="{{ url("/restaurants/?category_id={$category->id}") }}" role="button">{{ $category->name }}</a>
+    @endforeach
 </div>
 @endsection
