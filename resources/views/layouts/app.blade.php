@@ -17,6 +17,8 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    @stack('styles')
 </head>
 <body>
     <div id="app">
@@ -41,7 +43,7 @@
                         @if (Auth::guard('admin')->check())
                             <li class="nav-item"><a href="{{ route('dashboard.restaurants.index') }}" class="nav-link">店舗一覧</a></li>
                             <li class="nav-item"><a href="{{ route('dashboard.users.index') }}" class="nav-link">会員一覧</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">カテゴリ一覧</a></li>
+                            <li class="nav-item"><a href="{{ route('dashboard.categories.index') }}" class="nav-link">カテゴリ一覧</a></li>
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('dashboard.logout') }}"
                                     onclick="event.preventDefault();
@@ -95,5 +97,7 @@
             @yield('content')
         </main>
     </div>
+
+    @stack('scripts')
 </body>
 </html>
