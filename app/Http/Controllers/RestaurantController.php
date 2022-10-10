@@ -17,9 +17,9 @@ class RestaurantController extends Controller {
         $category_id = $request->input('category_id');
 
         if ($category_id !== null) {
-            $restaurants = Restaurant::where('name', 'like', "%{$keyword}%")->where('category_id', $category_id)->paginate(15);
+            $restaurants = Restaurant::where('name', 'like', "%{$keyword}%")->where('category_id', $category_id)->orderBy('created_at', 'desc')->paginate(10);
         } else {
-            $restaurants = Restaurant::where('name', 'like', "%{$keyword}%")->paginate(15);
+            $restaurants = Restaurant::where('name', 'like', "%{$keyword}%")->orderBy('created_at', 'desc')->paginate(10);
         }
 
         $categories = Category::all();
