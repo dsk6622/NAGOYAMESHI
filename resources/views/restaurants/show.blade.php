@@ -55,7 +55,7 @@
                 </tr>            
             </table>  
             <div class="text-center">
-                <a href="{{ route('restaurants.reviews.create', $restaurant) }}" class="btn btn-primary text-white shadow-sm mb-3">予約</a>
+                <a href="{{ route('restaurants.reservations.create', $restaurant) }}" class="btn btn-primary text-white shadow-sm mb-3">予約</a>
             </div>               
         </div>       
     </div>    

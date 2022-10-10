@@ -9,7 +9,7 @@
     </div>            
 
     @if (session('flash_message')) 
-        <div>
+        <div class="text-center">
             <p class="text-success">{{ session('flash_message') }}</p>                    
         </div>                                   
     @endif                                             

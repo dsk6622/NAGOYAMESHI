@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('restaurants', RestaurantController::class)->only(['index', 'show']);
 
 Route::resource('restaurants.reviews', ReviewController::class)->only('create', 'store', 'edit', 'update', 'destroy');
+Route::resource('restaurants.reservations', ReservationController::class)->only(['create', 'store']);
+Route::resource('reservations', ReservationController::class)->only(['index', 'destroy']);
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('login', [Dashboard\Auth\LoginController::class, 'showLoginForm'])->name('login');

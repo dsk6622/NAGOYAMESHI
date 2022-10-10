@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder {
             UserSeeder::class,
             AdminSeeder::class,
             ReviewSeeder::class,
+            ReservationSeeder::class,
         ]);
     }
 }
