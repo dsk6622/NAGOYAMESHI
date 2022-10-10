@@ -159,7 +159,7 @@
                 </div>
 
                 <div class="form-group d-flex justify-content-center mb-4">
-                    <button type="submit" class="btn btn-primary shadow-sm w-100">登録</button>
+                    <button type="submit" class="btn btn-primary shadow-sm w-100">更新</button>
                 </div>
             </form>
         </div> 

@@ -21,6 +21,12 @@
         </ul>
     </div>
 
+    @if (session('flash_message')) 
+        <div class="text-center">
+            <p class="text-success">{{ session('flash_message') }}</p>                    
+        </div>                                   
+    @endif     
+
     <h2 class="text-center">店舗検索</h2>
 
     <div class="d-flex justify-content-center mb-5">

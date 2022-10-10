@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('restaurants', RestaurantController::class)->only(['index', 'show']);
 
-Route::resource('restaurants.reviews', ReviewController::class)->only('create', 'store', 'edit', 'update', 'destroy');
-Route::resource('restaurants.reservations', ReservationController::class)->only(['create', 'store']);
-Route::resource('reservations', ReservationController::class)->only(['index', 'destroy']);
+Route::middleware('auth')->group(function () {
+    Route::resource('restaurants.reviews', ReviewController::class)->only('create', 'store', 'edit', 'update', 'destroy')->middleware('subscribed');
+    Route::resource('restaurants.reservations', ReservationController::class)->only(['create', 'store'])->middleware('subscribed');
+    Route::resource('reservations', ReservationController::class)->only(['index', 'destroy'])->middleware('subscribed');
+
+    Route::get('subscription', [SubscriptionController::class, 'create'])->name('subscription.create');
+    Route::post('subscription', [SubscriptionController::class, 'store'])->name('subscription.store');
+    Route::get('subscription/cancel', [SubscriptionController::class, 'cancel'])->middleware('subscribed')->name('subscription.cancel');
+    Route::post('subscription/destroy', [SubscriptionController::class, 'destroy'])->middleware('subscribed')->name('subscription.destroy');
+});
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('login', [Dashboard\Auth\LoginController::class, 'showLoginForm'])->name('login');

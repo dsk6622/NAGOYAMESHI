@@ -74,8 +74,13 @@
                                         {{ Auth::user()->name }}
                                     </a>
 
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a href="{{ route('reservations.index') }}" class="dropdown-item">予約一覧</a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">  
+                                        @if (Auth::user()->subscribed('subscription_plan'))
+                                            <a href="{{ route('reservations.index') }}" class="dropdown-item">予約一覧</a>
+                                            <a href="{{ route('subscription.cancel') }}" class="dropdown-item">有料プラン解約</a>                                        
+                                        @else
+                                            <a href="{{ route('subscription.create') }}" class="dropdown-item">有料プラン登録</a>
+                                        @endif                                    
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
