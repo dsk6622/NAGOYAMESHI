@@ -35,7 +35,7 @@
                 </tr>                             
                 <tr>
                     <th scope="col">郵便番号</th>    
-                    <td>〒{{ $restaurant->postal_code }}</td>
+                    <td>〒{{ substr($restaurant->postal_code, 0, 3) . '-' . substr($restaurant->postal_code, 3) }}</td>
                 </tr>
                 <tr>
                     <th scope="col">住所</th>

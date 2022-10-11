@@ -32,7 +32,7 @@
                 <tr>
                     <td>{{ $restaurant->id }}</td>                    
                     <td>{{ $restaurant->name }}</td>                            
-                    <td>〒{{ $restaurant->postal_code }}</td>
+                    <td>〒{{ substr($restaurant->postal_code, 0, 3) . '-' . substr($restaurant->postal_code, 3) }}</td>
                     <td>{{ $restaurant->address }}</td>
                     <td>{{ $restaurant->phone_number }}</td>
                     <td><a href="{{ route('dashboard.restaurants.show', $restaurant) }}">詳細</a></td>
